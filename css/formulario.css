@@ -1,0 +1,13 @@
+table{
+	margin: auto;	
+}
+td{
+	padding: 5px 5px 5px 5px;
+}
+h2{
+	font-family: verdana;
+	text-align: center;
+}
+th{
+	padding: 5px 5px 5px 5px;
+}

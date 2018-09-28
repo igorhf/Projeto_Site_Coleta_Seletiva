@@ -1,0 +1,53 @@
+.menu ol li{
+	display: inline-block;
+	list-style-type:none;	
+}
+.menu ol li a{	
+	text-decoration: none;
+	font-size: 18px;
+	font-family: verdana;
+	text-align: center;
+	padding: 16px 10px 12px 10px;
+	color: #000;	
+}
+.menu ol li a:hover{	
+	background: green;
+	color: white;
+}
+.menu{
+	border: 1px solid;
+	height: 50px;
+	width: 100%;
+	text-align: center;
+	background: #e4ca97;	
+}
+/*sub menu*/
+.btn_sub_menu{
+	background-color:#e4ca97;
+    border: none;    
+	padding: 15px 32px;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer;
+	width: 100%;
+	font-family: verdana;
+}
+.btn_sub_menu:hover{
+	background: green;
+	color: white;   
+}
+.sub_menu div{
+	float: left;	
+}
+.div_1{
+	width: 300px;		
+}
+.div_2{
+	width: 70%;	
+}
+h2{
+	color: green;
+	text-align: center;
+}
+
+
