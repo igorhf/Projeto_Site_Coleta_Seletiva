@@ -12,8 +12,8 @@
 					?>
 					<h2>EMPRESAS</h2>
 					<?php
-					if ($result==null) {// se não tiver algum pedido de confirmação de pedido de coletas, esse codigo sera executado
-						echo "<h2>não a nenhum registros</h2>";
+					if ($result==null) {// se não tiver algum pedido de finalizador
+						echo "<h2>NÃO A NENHUM REGISTROS</h2>";
 					}
 					foreach ($result as $row) {
 						?>
@@ -37,9 +37,9 @@
 						<textarea rows="5" cols="50" name="comentario"></textarea>
 						<br>
 						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked><br>
-						<input type="submit" name="btm_Classificar_Atendimento_morador" value="SALVA">	
+						<input class="classificar" type="submit" name="btm_Classificar_Atendimento_morador" value="SALVA">	
 						</form>	
-						</div>
+						</div>						
 						<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 						<?php
 					}
@@ -55,8 +55,8 @@
 					?>
 					<h2>CATADORES</h2>
 					<?php
-					if ($result==null) {// se não tiver algum pedido de confirmação de pedido de coletas, esse codigo sera executado
-						echo "<h2>não a nenhum registros</h2>";
+					if ($result==null) {// se não tiver algum pedido de finalizador
+						echo "<h2>NÃO A NENHUM REGISTROS</h2>";
 					}
 					foreach ($result as $row) {
 						?>
@@ -80,9 +80,17 @@
 						<textarea rows="5" cols="50" name="comentario"></textarea>
 						<br>
 						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked><br>
-						<input type="submit" name="btm_Classificar_Atendimento_morador" value="SALVA">	
+						<input class="classificar" type="submit" name="btm_Classificar_Atendimento_morador" value="SALVA">	
 						</form>	
 						</div>
+						<!--codigo jquery, menssagem quando click em salva -->
+						<script type="text/javascript">
+						$(document).ready(function(){
+							$('.classificar').click(function() {
+								alert("CLASSIFICAÇÃO SALVA");
+							});
+						});
+						</script>
 						<?php
 					}
 				}
@@ -97,10 +105,10 @@
 					$select->execute();
 					$result=$select->fetchAll(PDO::FETCH_ASSOC);
 					?>
-					<h2>MORADORES</h2>
+					<h2>CLASSIFIQUE O ATENDIMENTO DOS MORADORES</h2>
 					<?php
-					if ($result==null) {// se não tiver algum pedido de confirmação de pedido de coletas, esse codigo sera executado
-						echo "<h2>não a nenhum registros</h2>";
+					if ($result==null) {// se não tiver algum pedido de finalizador
+						echo "<h2>NÃO A NENHUM REGISTROS</h2>";
 					}
 					foreach ($result as $row) {
 						?>
@@ -122,9 +130,17 @@
 						<textarea rows="5" cols="50" name="comentario"></textarea>
 						<br>
 						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked><br>
-						<input type="submit" name="btm_Classificar_Atendimento_catador" value="SALVA">	
+						<input class="classificar" type="submit" name="btm_Classificar_Atendimento_catador" value="SALVA">	
 						</form>	
 						</div>
+						<!--codigo jquery, menssagem quando click em salva -->
+						<script type="text/javascript">
+						$(document).ready(function(){
+							$('.classificar').click(function() {
+								alert("CLASSIFICAÇÃO SALVA");
+							});
+						});
+						</script>
 						<?php
 					}					
 				}
@@ -139,10 +155,10 @@
 					$select->execute();
 					$result=$select->fetchAll(PDO::FETCH_ASSOC);
 					?>
-					<h2>MORADORES</h2>
+					<h2>CLASSIFIQUE O ATENDIMENTO DOS MORADORES</h2>
 					<?php
 					if ($result==null) {// se não tiver algum pedido de confirmação de pedido de coletas, esse codigo sera executado
-						echo "<h2>não a nenhum registros</h2>";
+						echo "<h2>NÃO A NENHUM REGISTROS</h2>";
 					}
 					foreach ($result as $row) {
 						?>
@@ -164,9 +180,17 @@
 						<textarea rows="5" cols="50" name="comentario"></textarea>
 						<br>
 						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked><br>
-						<input type="submit" name="btm_Classificar_Atendimento_empressa" value="SALVA">	
+						<input class="classificar" type="submit" name="btm_Classificar_Atendimento_empressa" value="SALVA">	
 						</form>	
 						</div>
+						<!--codigo jquery, menssagem quando click em salva -->
+						<script type="text/javascript">
+						$(document).ready(function(){
+							$('.classificar').click(function() {
+								alert("CLASSIFICAÇÃO SALVA");
+							});
+						});
+						</script>
 						<?php
 					}					
 				}

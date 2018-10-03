@@ -60,7 +60,7 @@ if ($_SESSION['usuario']=='morador') {
 					</form>
 					<?php					
 				}else{
-					echo "<h2>essa opção so poder ser usada por moradores</h2>";
+					echo "<h2>ESSA OPÇÃO SÓ PODER SER USADA POR MORADORES</h2>";
 				}
 				if (isset($_POST['btn_agendar_dias'])) {			
 				$insert=$conn->prepare("INSERT INTO associacao(idmorador,iddias)VALUES(:morador,:dias)");
