@@ -1,3 +1,10 @@
+copie e colar
+1º passo-----------------------------------
+
+create database coletas;
+
+2º passo-----------------------------------
+
 create table associacao(
 id int primary key auto_increment,
 idmorador int,
@@ -17,6 +24,8 @@ coteta varchar(10),
 data date
 );
 
+3º passo-----------------------------------
+
 create table empresa(
 id int primary key auto_increment,
 nome varchar(100) not null,
@@ -34,8 +43,10 @@ preto varchar(15),
 cinza varchar(15),
 roxo varchar(15),
 branco varchar(15),
-litros varchar(15)
+litros int
 );
+
+4º passo-----------------------------------
 
 create table catadores(
 id int primary key auto_increment,
@@ -55,8 +66,10 @@ preto varchar(15),
 cinza varchar(15),
 roxo varchar(15),
 branco varchar(15),
-litros varchar(15)
+litros int
 );
+
+5º passo-----------------------------------
 
 create table morador(
 id int primary key auto_increment,
@@ -83,5 +96,5 @@ preto varchar(15),
 cinza varchar(15),
 roxo varchar(15),
 branco varchar(15),
-litros varchar(15)
+litros int
 );

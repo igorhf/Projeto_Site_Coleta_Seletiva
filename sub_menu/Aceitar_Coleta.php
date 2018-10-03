@@ -25,9 +25,17 @@
 					echo "<input style="."display:none"." type="."checkbox"." name="."id"." value=".$row['id']." checked>";
 					?>					
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
+					<input class="aceitar_pedido" type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
 					</form>
-					</div>			
+					</div>
+					<!--codigo jquery, menssagem quando click no botão aceitar pedido -->
+					<script type="text/javascript">
+					$(document).ready(function(){
+						$('.aceitar_pedido').click(function() {
+							alert("PEDIDO ACEITO COM SUCESSO");
+						});
+					});
+					</script>			
 					<?php
 					}
 					//codigo que traz todos os pedidos dos catadores
@@ -55,9 +63,17 @@
 					echo "<input style="."display:none"." type="."checkbox"." name="."id"." value=".$row['id']." checked>";
 					?>					
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input type="submit" name="btn_catador" value="ACEITAR PEDIDO"><br><br>
+					<input class="aceitar_pedido" type="submit" name="btn_catador" value="ACEITAR PEDIDO"><br><br>
 					</form>
-					</div>					
+					</div>
+					<!--codigo jquery, menssagem quando click no botão aceitar pedido -->
+					<script type="text/javascript">
+					$(document).ready(function(){
+						$('.aceitar_pedido').click(function() {
+							alert("PEDIDO ACEITO COM SUCESSO");
+						});
+					});
+					</script>					
 					<?PHP					
 					}					
 					?>					
@@ -105,9 +121,17 @@
 					echo "<strong>LITROS</strong>: ".$row['litros']."<br>";
 					?>					
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
+					<input class="aceitar_pedido" type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
 					</form>
-					</div>	
+					</div>
+					<!--codigo jquery, menssagem quando click no botão aceitar pedido -->
+					<script type="text/javascript">
+					$(document).ready(function(){
+						$('.aceitar_pedido').click(function() {
+							alert("PEDIDO ACEITO COM SUCESSO");
+						});
+					});
+					</script>	
 					<?php					
 					}
 					//aceita o pedido do morador, mais aguardara a confirmação do morador
@@ -144,9 +168,17 @@
 					echo "<strong>LITROS</strong>: ".$row['litros']."<br>";
 					?>					
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
+					<input class="aceitar_pedido" type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
 					</form>
-					</div>	
+					</div>
+					<!--codigo jquery, menssagem quando click no botão aceitar pedido -->
+					<script type="text/javascript">
+					$(document).ready(function(){
+						$('.aceitar_pedido').click(function() {
+							alert("PEDIDO ACEITO COM SUCESSO");
+						});
+					});
+					</script>	
 					<?php				
 					}
 					//aceita o pedido do morador, mais aguardara a confirmação do morador

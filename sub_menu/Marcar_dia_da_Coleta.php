@@ -56,7 +56,7 @@ if ($_SESSION['usuario']=='morador') {
 					?>
 					</select>
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Marcar dia da Coleta" checked>
-					<input type="submit" name="btn_agendar_dias" value="agendar dias"></h2>
+					<input class="AgendarDias" type="submit" name="btn_agendar_dias" value="agendar dias"></h2>
 					</form>
 					<?php					
 				}else{
@@ -70,3 +70,13 @@ if ($_SESSION['usuario']=='morador') {
 				$insert->bindParam(":dias",$iddias);
 				$insert->execute();	
 				}
+				?>
+				<!--codigo jquery, menssagem de confirmação-->
+				<script type="text/javascript">
+					$(document).ready(function(){
+						$('.AgendarDias').click(function() {
+							alert("aguarde a confirmação do catador ou empresa");
+						});
+					});
+				</script>
+				<?php
