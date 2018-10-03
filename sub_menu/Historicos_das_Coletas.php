@@ -4,10 +4,10 @@ if ($_SESSION['usuario'] == "morador") {
 	$select=$conn->prepare("SELECT a.id,c.nome,c.cpf,b.nome,b.cnpja,a.data FROM associacao a join empresa b on b.id=a.idempressa join morador c on c.id=a.idmorador where a.idmorador=:id and a.data is not null");
 	$select->bindParam('id', $_SESSION['id']);
 	$select->execute();
-	$result=$select->fetchaAll(PDO::FETCH_ASSOC);
-	echo "<h2>HISTORICO FEITO POR EMPRESA</h2>";
+	$result=$select->fetchAll(PDO::FETCH_ASSOC);
+	echo "<h2>HISTORICO DE COLETA FEITA POR EMPRESA</h2>";
 	if ($result==null) {
-		echo "não a nenhum registro";
+		echo "<h2>não a nenhum registro</h2>";
 	}
 	foreach ($result as $row) {
 		?>

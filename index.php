@@ -75,8 +75,8 @@
 					break;
 
 				//moradores,catadores e empresas, ambos iram ver os historicos das coletas	
-				case 'Historicos de Coletas':					
-				require("sub_menu/Classificar_Atendimento.php");
+				case 'Historicos das Coletas':					
+				require("sub_menu/Historicos_das_Coletas.php");
 					break;	
 
 				default:
