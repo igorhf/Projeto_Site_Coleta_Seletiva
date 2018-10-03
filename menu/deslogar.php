@@ -1,8 +1,6 @@
 <?php
-
 session_start();
 session_unset();
 session_destroy();
-header('Location:index.php');
-
+set_include_path(header('Location:../index.php'));
   ?>

@@ -2,7 +2,7 @@
     $morador_insert = isset($_GET["btn_morador"])?$_GET["btn_morador"]:"";
 if($morador_insert != null){
 
-	require_once("configuracao_sql.php");
+	set_include_path(require_once("../conecxao_bd/configuracao_sql.php"));
 
 	try{	
 
@@ -65,7 +65,7 @@ if($morador_insert != null){
 	echo "erro ao inserir ".$e->getMessage();	
 	}
 	finally{
-	header('Location:index.php');
+	set_include_path(header('Location:../index.php'));	
 	}
 
 }
@@ -74,7 +74,7 @@ if($morador_insert != null){
     $catadores_insert = isset($_GET["btn_catador"])?$_GET["btn_catador"]:"";
 if($catadores_insert != null){
 
-	require_once("configuracao_sql.php");
+    set_include_path(require_once("../conecxao_bd/configuracao_sql.php"));	
 
 	try{	
 
@@ -123,7 +123,7 @@ if($catadores_insert != null){
 	echo "erro ao inserir ".$e->getMessage();	
 	}
 	finally{
-	header('Location:index.php');
+	set_include_path(header('Location:../index.php'));
 	}
 }
 	
@@ -131,7 +131,7 @@ if($catadores_insert != null){
     $empressa = isset($_GET["btn_op"])?$_GET["btn_op"]:"";
 if($empressa != null){
 
-	require_once("configuracao_sql.php");
+	set_include_path(require_once("../conecxao_bd/configuracao_sql.php"));
 
 	try{
 	$insert=$conn->prepare("INSERT INTO empressa(nome,cnpj,telefone,email,senha,litros,amarelo,verde,vermelho,azul,marrom,laranja,preto,cinza,roxo,branco)VALUES(:nome,:cnpj,:telefone,:email,:senha,:litros,:amarelo,:verde,:vermelho,:azul,:marrom,:laranja,:preto,:cinza,:roxo,:branco)");
@@ -177,7 +177,7 @@ if($empressa != null){
 	echo "erro ao inserir ".$e->getMessage();	
 	}
 	finally{
-	header('Location:index.php');
+	set_include_path(header('Location:../index.php'));
 	}
 
 }	

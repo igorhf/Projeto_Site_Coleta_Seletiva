@@ -4,7 +4,7 @@
 	<title>Fomulario</title>
 	<meta charset="utf-8">
 	<!--css-->
-	<link rel="stylesheet" type="text/css" href="css/formulario.css">
+	<link rel="stylesheet" type="text/css" href="../css/formulario.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
@@ -102,10 +102,10 @@
 			<tr>
 				<td><label>Litros MAX:</label>
 					<select name="litros">
-						<option>10L</option>
-						<option>20L</option>
-						<option>60L</option>
-						<option>100L</option>
+						<option value="10">10L</option>
+						<option value="20">20L</option>
+						<option value="60">60L</option>
+						<option value="100">100L</option>
 					</select>
 				</td>
 			</tr>			
@@ -176,10 +176,10 @@
 						<tr>
 							<td><label>Litros MAX:</label>
 								<select name="litros">
-									<option>10L</option>
-									<option>20L</option>
-									<option>60L</option>
-									<option>100L</option>
+									<option value="10">10L</option>
+									<option value="20">20L</option>
+									<option value="60">60L</option>
+									<option value="100">100L</option>
 								</select>
 							</td>
 						</tr>
@@ -201,7 +201,7 @@
 				<?php	
 					break;
 				case 'cooperativas ou órgãos públicos':
-				//Cadastro CADASTRO COOPERATIVAS OU ÓRGÃOS PÚBLICOS
+				// CADASTRO COOPERATIVAS OU ÓRGÃOS PÚBLICOS
 				//tabela
 				?>
 				<form action="insert_cadastro_fomulario.php" method="GET">	
@@ -237,10 +237,10 @@
 						<tr>
 							<td><label>Litros MAX:</label>
 								<select name="litros">
-									<option>10L</option>
-									<option>20L</option>
-									<option>60L</option>
-									<option>100L</option>
+									<option value="10">10L</option>
+									<option value="20">20L</option>
+									<option value="60">60L</option>
+									<option value="100">100L</option>
 								</select>
 							</td>
 						</tr>
