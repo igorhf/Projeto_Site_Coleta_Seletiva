@@ -2,14 +2,14 @@
 /////morador///////////////////////////////////////////////////////////////////////////////////////////
 				if($_SESSION['usuario'] == 'morador'){	
 					//busca todos os agendamentos do usuario													
-					$select=$conn->prepare("SELECT a.id,c.nome,c.cnpj,c.telefone,c.email from associacao a join empresa c on c.id=a.idempressa where a.idempressa is not null and a.aceitar is null");
+					$select=$conn->prepare("SELECT a.id,c.nome,c.cnpj,c.telefone,c.email from associacao a join empresa c on c.id=a.idempresa where a.idempresa is not null and a.aceitar is null");
 					$select->execute();
 					$result=$select->fetchAll(PDO::FETCH_ASSOC);
 					?>					
 					<h2>EMPRESAS</h2>										
 					<?php
-					if ($result==null) {// se não tiver algum pedido de confirmação de pedido de coletas, esse codigo sera executado
-						echo "<h2>não a nenhum registros</h2>";
+					if ($result==null) {// se não tiver algum pedido de confirmação, esse codigo sera executado
+						echo "<h2>NÃO A NENHUM REGISTROS</h2>";
 					}
 					//ira trazer todos os pedidos que aguarda as confirmações
 					foreach ($result as $row) {						
@@ -25,17 +25,9 @@
 					echo "<input style="."display:none"." type="."checkbox"." name="."id"." value=".$row['id']." checked>";
 					?>					
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input class="aceitar_pedido" type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
+					<input type="submit" name="btn_morador" value="ACEITAR PEDIDO"><br><br>
 					</form>
-					</div>
-					<!--codigo jquery, menssagem quando click no botão aceitar pedido -->
-					<script type="text/javascript">
-					$(document).ready(function(){
-						$('.aceitar_pedido').click(function() {
-							alert("PEDIDO ACEITO COM SUCESSO");
-						});
-					});
-					</script>			
+					</div>								
 					<?php
 					}
 					//codigo que traz todos os pedidos dos catadores
@@ -46,8 +38,8 @@
 					<br><br><br><br><br><br><br><br>					
 					<h2>CATADORES</h2>										
 					<?php
-					if ($result==null) {// se não tiver algum pedido de confirmação de pedido de coletas, esse codigo sera executado
-						echo "<h2>não a nenhum registros</h2>";
+					if ($result==null) {// se não tiver algum pedido de confirmação, esse codigo sera executado
+						echo "<h2>NÃO A NENHUM REGISTROS</h2>";
 					}
 					//ira trazer todos os pedidos que aguarda as confirmações
 					foreach ($result as $row) {						
@@ -63,45 +55,42 @@
 					echo "<input style="."display:none"." type="."checkbox"." name="."id"." value=".$row['id']." checked>";
 					?>					
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input class="aceitar_pedido" type="submit" name="btn_catador" value="ACEITAR PEDIDO"><br><br>
+					<input type="submit" name="btn_catador" value="ACEITAR PEDIDO"><br><br>
 					</form>
-					</div>
-					<!--codigo jquery, menssagem quando click no botão aceitar pedido -->
-					<script type="text/javascript">
-					$(document).ready(function(){
-						$('.aceitar_pedido').click(function() {
-							alert("PEDIDO ACEITO COM SUCESSO");
-						});
-					});
-					</script>					
+					</div>										
 					<?PHP					
 					}					
 					?>					
 					<?php
 					///faz a comfirmação do pedido, catadores e empressas
-					try {
-						if (isset($_POST['id'])) {
+				if (isset($_POST['id'])) {
+					try {						
 						$insert=$conn->prepare("UPDATE associacao SET aceitar=:aceitar where id=:id");
 						$aceito="aceito";
 						$insert->bindParam(':aceitar', $aceito);
 						$insert->bindParam(':id',$_POST['id']);
 						$insert->execute();
-					}	
 					} catch (Exception $e) {
 						echo "erro na aceitação do pedido ".$e->getMessage();
-					}
-					
-				}
+					} finally{
+						?>
+						<script type="text/javascript">
+							alert("pedido aceito com sucesso");
+						</script>
+						<?php
+					    }					
+				    }
+			    }
 				//////catadores/////////////////////////////////////////////////////////////////////////////////////
 				if ($_SESSION['usuario'] == 'catador') {
-					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta, a.idcatador!=null and a.idempressa!=null and a.idmorador FROM associacao a 
+					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta, a.idcatador!=null and a.idempresa!=null and a.idmorador FROM associacao a 
 						join morador b on b.id=a.idmorador 
 						join dias c on c.id=a.iddias 
-						where idcatador is  null and idempressa is  null");					
+						where idcatador is  null and idempresa is  null");					
 					$select->execute();
 					$result=$select->fetchAll(PDO::FETCH_ASSOC);
-					if ($result==null) {// se não tiver algum pedido de confirmação de pedido de coletas, esse codigo sera executado
-						echo "<h2>não a nenhum registros</h2>";
+					if ($result==null) {// se não tiver algum pedido de confirmação, esse codigo sera executado
+						echo "<h2>NÃO A NENHUM REGISTROS</h2>";
 					}
 					foreach ($result as $row) {
 					?>
@@ -121,35 +110,40 @@
 					echo "<strong>LITROS</strong>: ".$row['litros']."<br>";
 					?>					
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input class="aceitar_pedido" type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
+					<input type="submit" name="btn_catador" value="ACEITAR PEDIDO"><br><br>
 					</form>
-					</div>
-					<!--codigo jquery, menssagem quando click no botão aceitar pedido -->
-					<script type="text/javascript">
-					$(document).ready(function(){
-						$('.aceitar_pedido').click(function() {
-							alert("PEDIDO ACEITO COM SUCESSO");
-						});
-					});
-					</script>	
+					</div>						
 					<?php					
 					}
 					//aceita o pedido do morador, mais aguardara a confirmação do morador
 					if (isset($_POST['id'])) {
-						$insert=$conn->prepare("UPDATE associacao SET idcatador=:idcatador where id=:id");
-						$insert->bindParam(':idcatador',$_SESSION['id']);
-						$insert->bindParam(':id',$_POST['id']);
-						$insert->execute();
+						try {
+							$insert=$conn->prepare("UPDATE associacao SET idcatador=:idcatador where id=:id");
+							$insert->bindParam(':idcatador',$_SESSION['id']);
+							$insert->bindParam(':id',$_POST['id']);
+							$insert->execute();
+						} catch (Exception $e) {
+							echo "erro na aceitação do pedido ".$e->getMessage();
+						} finally{
+							?>
+							<script type="text/javascript">
+								alert("pedido aceito com sucesso");
+							</script>
+							<?php
+						}					
 					}
 				}
 				//empressa/////////////////////////////////////////////////////////////////////////////////////////////////
 				if ($_SESSION['usuario'] == 'empresa') {	
 					//codigo responsavel por trazer todos os agendamentos dos moradores, e fazer as comparação de classificação				
-					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta, a.idcatador!=null and a.idempressa!=null and a.idmorador FROM associacao a 
-						join morador b on b.id=a.idmorador join dias c on c.id=a.iddias where idcatador is  null and idempressa is  null");
+					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta, a.idcatador!=null and a.idempresa!=null and a.idmorador FROM associacao a 
+						join morador b on b.id=a.idmorador join dias c on c.id=a.iddias where idcatador is  null and idempresa is  null");
 
 					$select->execute();
 					$result=$select->fetchAll(PDO::FETCH_ASSOC);
+					if ($result==null) {// se não tiver algum pedido de confirmação, esse codigo sera executado
+						echo "<h2>NÃO A NENHUM REGISTROS</h2>";
+					}
 					foreach ($result as $row) {
 					?>
 					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
@@ -168,24 +162,26 @@
 					echo "<strong>LITROS</strong>: ".$row['litros']."<br>";
 					?>					
 					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input class="aceitar_pedido" type="submit" name="btn_empressa" value="ACEITAR PEDIDO"><br><br>
+					<input type="submit" name="btn_empresa" value="ACEITAR PEDIDO"><br><br>
 					</form>
-					</div>
-					<!--codigo jquery, menssagem quando click no botão aceitar pedido -->
-					<script type="text/javascript">
-					$(document).ready(function(){
-						$('.aceitar_pedido').click(function() {
-							alert("PEDIDO ACEITO COM SUCESSO");
-						});
-					});
-					</script>	
+					</div>						
 					<?php				
 					}
 					//aceita o pedido do morador, mais aguardara a confirmação do morador
 					if (isset($_POST['id'])) {
-						$insert=$conn->prepare("UPDATE associacao SET idempressa=:idempressa where id=:id");
-						$insert->bindParam(':idempressa',$_SESSION['id']);
-						$insert->bindParam(':id',$_POST['id']);
-						$insert->execute();
+						try {
+							$insert=$conn->prepare("UPDATE associacao SET idempresa=:idempresa where id=:id");
+							$insert->bindParam(':idempresa',$_SESSION['id']);
+							$insert->bindParam(':id',$_POST['id']);
+							$insert->execute();
+						} catch (Exception $e) {
+							echo "erro na aceitação do pedido ".$e->getMessage();
+						} finally{
+							?>
+							<script type="text/javascript">
+								alert("pedido aceito com sucesso");
+							</script>
+							<?php
+						}						
 					}
 				}	

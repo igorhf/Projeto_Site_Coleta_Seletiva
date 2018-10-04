@@ -1,24 +1,99 @@
 <?php
 
 if ($_SESSION['usuario'] == "morador") {
-	$select=$conn->prepare("SELECT a.id,c.nome,c.cpf,b.nome,b.cnpja,a.data FROM associacao a join empresa b on b.id=a.idempressa join morador c on c.id=a.idmorador where a.idmorador=:id and a.data is not null");
+	$select=$conn->prepare("SELECT a.id,b.nome,b.cnpj,a.cortida2,a.comentario2,a.data,a.coleta FROM associacao a join empresa b on b.id=a.idempresa where a.data is not null and a.coleta is not null and a.idmorador=:id  and a.idempresa is not null and a.comentario2 is not null and a.cortida2 is not null ");
 	$select->bindParam('id', $_SESSION['id']);
 	$select->execute();
-	$result=$select->fetchAll(PDO::FETCH_ASSOC);
-	echo "<h2>HISTORICO DE COLETA FEITA POR EMPRESA</h2>";
-	if ($result==null) {
-		echo "<h2>não a nenhum registro</h2>";
-	}
+	$result=$select->fetchAll(PDO::FETCH_ASSOC);	
+	echo "<h2>HISTORICO DA COLETA FEITO POR EMPRESA</h2>";	
+	if ($result==null) {// se não tiver nenhum historico
+			echo "<h2>NÃO A NENHUM HISTORICO</h2>";
+		}
 	foreach ($result as $row) {
 		?>
 		<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
-		<?php
+		<?php		
 		echo "<strong>ID</strong>: ".$row['id']."<br>";
-		echo "<strong>NOME MORADOR:</strong>: ".$row['nome']."<br>";
-		echo "<strong>CPF MORADOR</strong>: ".$row['cpf']."<br>";
 		echo "<strong>NOME EMPRESA</strong>: ".$row['nome']."<br>";
-		echo "<strong>CNPJ EMPRESA</strong>: ".$row['cnpj']."<br>";
+		echo "<strong>CNPJ EMPRESA</strong>: ".$row['cnpj']."<br>";		
 		echo "<strong>DATA DA FINALIZAÇÃO DA COLETA</strong>: ".$row['data']."<br>";
+		echo "<hr>";		
+		echo "<strong>NOTA RECEBIDA</strong>: ".$row['cortida2']."<br>";
+		echo "<strong>COMENTARIO</strong>: ".$row['comentario2']."<br>";
+		?>
+		</div>
+		<?php
+	}
+	echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+	$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,a.cortida2,a.comentario2,a.data,a.coleta FROM associacao a join catadores b on b.id=a.idmorador where a.data is not null and a.coleta is not null and a.idmorador=:id and a.idcatador is not null and a.comentario2 is not null and a.cortida2 is not null ");
+	$select->bindParam('id', $_SESSION['id']);
+	$select->execute();
+	$result=$select->fetchAll(PDO::FETCH_ASSOC);	
+	echo "<h2>HISTORICO DA COLETA FEITO POR CATADORES</h2>";	
+	if ($result==null) {// se não tiver nenhum historico
+			echo "<h2>NÃO A NENHUM HISTORICO</h2>";
+		}
+	foreach ($result as $row) {
+		?>
+		<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+		<?php		
+		echo "<strong>ID</strong>: ".$row['id']."<br>";
+		echo "<strong>NOME CATADOR</strong>: ".$row['nome']."<br>";
+		echo "<strong>CPF CATADOR</strong>: ".$row['cpf']."<br>";		
+		echo "<strong>DATA DA FINALIZAÇÃO DA COLETA</strong>: ".$row['data']."<br>";
+		echo "<hr>";		
+		echo "<strong>NOTA RECEBIDA</strong>: ".$row['cortida2']."<br>";
+		echo "<strong>COMENTARIO</strong>: ".$row['comentario2']."<br>";
+		?>
+		</div>
+		<?php
+	}
+}
+if ($_SESSION['usuario'] == "catador") {
+	$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,a.cortida1,a.comentario1,a.data,a.coleta FROM associacao a join morador b on b.id=a.idmorador where a.data is not null and a.coleta is not null and a.idcatador=:id  and a.comentario2 is not null and a.cortida2 is not null ");
+	$select->bindParam('id', $_SESSION['id']);
+	$select->execute();
+	$result=$select->fetchAll(PDO::FETCH_ASSOC);	
+	echo "<h2>HISTORICO DA COLETA</h2>";
+	if ($result==null) {// se não tiver nenhum historico
+			echo "<h2>NÃO A NENHUM HISTORICO</h2>";
+		}
+	foreach ($result as $row) {
+		?>
+		<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+		<?php		
+		echo "<strong>ID</strong>: ".$row['id']."<br>";
+		echo "<strong>NOME MORADOR</strong>: ".$row['nome']."<br>";
+		echo "<strong>CPF MORADOR</strong>: ".$row['cpf']."<br>";		
+		echo "<strong>DATA DA FINALIZAÇÃO DA COLETA</strong>: ".$row['data']."<br>";
+		echo "<hr>";		
+		echo "<strong>NOTA RECEBIDA</strong>: ".$row['cortida1']."<br>";
+		echo "<strong>COMENTARIO</strong>: ".$row['comentario1']."<br>";
+		?>
+		</div>
+		<?php
+	}
+}
+if ($_SESSION['usuario'] == "empresa") {
+	$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,a.cortida1,a.comentario1,a.data,a.coleta FROM associacao a join morador b on b.id=a.idmorador where a.data is not null and a.coleta is not null and a.idempresa=:id  and a.comentario2 is not null and a.cortida2 is not null ");
+	$select->bindParam('id', $_SESSION['id']);
+	$select->execute();
+	$result=$select->fetchAll(PDO::FETCH_ASSOC);	
+	echo "<h2>HISTORICO DA COLETA</h2>";
+	if ($result==null) {// se não tiver nenhum historico
+			echo "<h2>NÃO A NENHUM HISTORICO</h2>";
+		}
+	foreach ($result as $row) {
+		?>
+		<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+		<?php		
+		echo "<strong>ID</strong>: ".$row['id']."<br>";
+		echo "<strong>NOME MORADOR</strong>: ".$row['nome']."<br>";
+		echo "<strong>CPF MORADOR</strong>: ".$row['cpf']."<br>";		
+		echo "<strong>DATA DA FINALIZAÇÃO DA COLETA</strong>: ".$row['data']."<br>";
+		echo "<hr>";		
+		echo "<strong>NOTA RECEBIDA</strong>: ".$row['cortida1']."<br>";
+		echo "<strong>COMENTARIO</strong>: ".$row['comentario1']."<br>";
 		?>
 		</div>
 		<?php

@@ -50,6 +50,7 @@
 			<form method="POST">			
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Marcar dia da Coleta"><br>				
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Aceitar Coleta"><br>
+				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Finalizar Coleta"><br>
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Classificar Atendimento"><br>
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Historicos das Coletas">			
 			</form>
@@ -77,7 +78,12 @@
 				//moradores,catadores e empresas, ambos iram ver os historicos das coletas	
 				case 'Historicos das Coletas':					
 				require("sub_menu/Historicos_das_Coletas.php");
-					break;	
+					break;
+					
+				//essa opção os catadores e empresas, podera finalizar as coletas
+				case 'Finalizar Coleta':
+				require("sub_menu/Finalizar_Coleta.php");	
+					break;		
 
 				default:
 					# code...
