@@ -44,19 +44,38 @@
 		</ol>
 		</form>	
 	</nav>
-	<!--sub-menu-->
+	<?php
+	if ($_SESSION['usuario']=='morador') {
+		?>
+		<!--sub-menu-morador-->
 	<div class="sub_menu">
 		<div class="div_1">
 			<form method="POST">			
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Marcar dia da Coleta"><br>				
+				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Aceitar Coleta"><br>				
+				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Classificar Atendimento"><br>
+				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Historicos das Coletas">			
+			</form>
+		</div>
+		<?php
+	}else{
+		?>
+		<!--sub-menu-catador e empresa-->
+	<div class="sub_menu">
+		<div class="div_1">
+			<form method="POST">								
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Aceitar Coleta"><br>
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Finalizar Coleta"><br>
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Classificar Atendimento"><br>
 				<input class="btn_sub_menu" type="submit" name="btn_usuario" value="Historicos das Coletas">			
 			</form>
 		</div>
+		<?php
+	}
+	?>	
 		<div class="div_2">			
 			<?php
+	}
 			$opc=isset($_POST['btn_usuario'])?$_POST['btn_usuario']:"";
 			switch ($opc) {
 				//essa opção e validar a moradores, onde eles podera marcar o dia da coleta. informando a catador e empresa e o lixo esta cheio 
@@ -92,8 +111,7 @@
 			?>
 		</div>
 	</div>	
-	<?php
-	}
+	<?php	
 	?>
 	<!----------------------------------------------------------------------->
 </body>

@@ -50,7 +50,7 @@ if ($_SESSION['usuario'] == "morador") {
 	}
 }
 if ($_SESSION['usuario'] == "catador") {
-	$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,a.cortida1,a.comentario1,a.data,a.coleta FROM associacao a join morador b on b.id=a.idmorador where a.data is not null and a.coleta is not null and a.idcatador=:id  and a.comentario2 is not null and a.cortida2 is not null ");
+	$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,a.cortida1,a.comentario1,a.data,a.coleta FROM associacao a join morador b on b.id=a.idmorador where a.data is not null and a.coleta is not null and a.idcatador=:id  and a.comentario1 is not null and a.cortida1 is not null ");
 	$select->bindParam('id', $_SESSION['id']);
 	$select->execute();
 	$result=$select->fetchAll(PDO::FETCH_ASSOC);	
@@ -75,7 +75,7 @@ if ($_SESSION['usuario'] == "catador") {
 	}
 }
 if ($_SESSION['usuario'] == "empresa") {
-	$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,a.cortida1,a.comentario1,a.data,a.coleta FROM associacao a join morador b on b.id=a.idmorador where a.data is not null and a.coleta is not null and a.idempresa=:id  and a.comentario2 is not null and a.cortida2 is not null ");
+	$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,a.cortida1,a.comentario1,a.data,a.coleta FROM associacao a join morador b on b.id=a.idmorador where a.data is not null and a.coleta is not null and a.idempresa=:id  and a.comentario1 is not null and a.cortida1 is not null ");
 	$select->bindParam('id', $_SESSION['id']);
 	$select->execute();
 	$result=$select->fetchAll(PDO::FETCH_ASSOC);	
