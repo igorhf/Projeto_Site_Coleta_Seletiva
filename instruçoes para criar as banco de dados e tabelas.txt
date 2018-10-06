@@ -51,7 +51,7 @@ litros int
 
 4º passo-----------------------------------
 
-create table catadores(
+create table catador(
 id int primary key auto_increment,
 nome varchar(100) not null,
 cpf varchar(18) not null,

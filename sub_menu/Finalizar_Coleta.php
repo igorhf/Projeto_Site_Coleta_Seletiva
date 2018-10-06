@@ -5,7 +5,7 @@
 					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta FROM associacao a 
 						join morador b on b.id=a.idmorador 
 						join dias c on c.id=a.iddias 
-						where idcatador=:id and idempresa is  null and coleta is null");	
+						where idcatador=:id and idempresa is null and coleta is null and aceitar is not null");	
 					$select->bindParam(':id', $_SESSION['id']);					
 					$select->execute();
 					$result=$select->fetchAll(PDO::FETCH_ASSOC);
@@ -14,7 +14,7 @@
 					}
 					foreach ($result as $row) {
 					?>
-					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px 8px green">
 					<form method="POST">
 					<?php	
 					echo "<strong>ID</strong>: ".$row['id']."<br>";
@@ -61,7 +61,7 @@
 					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta FROM associacao a 
 						join morador b on b.id=a.idmorador 
 						join dias c on c.id=a.iddias 
-						where idempresa=:id and idcatador is  null and coleta is null");	
+						where idempresa=:id and idcatador is null and coleta is null and aceitar is not null");	
 					$select->bindParam(':id', $_SESSION['id']);					
 					$select->execute();
 					$result=$select->fetchAll(PDO::FETCH_ASSOC);
@@ -70,7 +70,7 @@
 					}
 					foreach ($result as $row) {
 					?>
-					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px 8px green">
 					<form method="POST">
 					<?php	
 					echo "<strong>ID</strong>: ".$row['id']."<br>";
@@ -102,7 +102,7 @@
 							$insert->bindParam(':id',$_POST['id']);
 							$insert->execute();
 						} catch (Exception $e) {
-							echo "erro na finalização mdo pedido ".$e->getMessage();
+							echo "erro na finalização do pedido ".$e->getMessage();
 						} finally{
 							?>
 							<script type="text/javascript">

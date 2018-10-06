@@ -1,6 +1,8 @@
 <?php
 /////morador///////////////////////////////////////////////////////////////////////////////////////////
-				if($_SESSION['usuario'] == 'morador'){	
+				if($_SESSION['usuario'] == 'morador'){
+				echo "<div style="."display:". "block".">";	
+					echo "<div>";	
 					//busca todos os agendamentos do usuario													
 					$select=$conn->prepare("SELECT a.id,c.nome,c.cnpj,c.telefone,c.email from associacao a join empresa c on c.id=a.idempresa where a.idempresa is not null and a.aceitar is null");
 					$select->execute();
@@ -14,7 +16,7 @@
 					//ira trazer todos os pedidos que aguarda as confirmações
 					foreach ($result as $row) {						
 					?>
-					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px 8px green">
 					<form method="POST">
 					<?php	
 					echo "<strong>ID</strong>: ".$row['id']."<br>";
@@ -24,18 +26,19 @@
 					echo "<strong>EMAIL</strong>: ".$row['email']."<br>";
 					echo "<input style="."display:none"." type="."checkbox"." name="."id"." value=".$row['id']." checked>";
 					?>					
-					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input type="submit" name="btn_morador" value="ACEITAR PEDIDO"><br><br>
+					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked>
+					<p style="text-align: center;"><input type="submit" name="btn_morador" value="ACEITAR PEDIDO"></p>
 					</form>
 					</div>								
 					<?php
 					}
+					echo "</div>";
+					echo "<div>";		
 					//codigo que traz todos os pedidos dos catadores
-					$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,b.telefone,b.email from associacao a join catadores b on b.id=a.idcatador where a.idcatador is not null and a.aceitar is null");
+					$select=$conn->prepare("SELECT a.id,b.nome,b.cpf,b.telefone,b.email from associacao a join catador b on b.id=a.idcatador where a.idcatador is not null and a.aceitar is null");
 					$select->execute();
 					$result=$select->fetchAll(PDO::FETCH_ASSOC);
-					?>
-					<br><br><br><br><br><br><br><br>					
+					?>										
 					<h2>CATADORES</h2>										
 					<?php
 					if ($result==null) {// se não tiver algum pedido de confirmação, esse codigo sera executado
@@ -44,7 +47,7 @@
 					//ira trazer todos os pedidos que aguarda as confirmações
 					foreach ($result as $row) {						
 					?>
-					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px 8px green">
 					<form method="POST">
 					<?php	
 					echo "<strong>ID</strong>: ".$row['id']."<br>";
@@ -54,14 +57,16 @@
 					echo "<strong>EMAIL</strong>: ".$row['email']."<br>";
 					echo "<input style="."display:none"." type="."checkbox"." name="."id"." value=".$row['id']." checked>";
 					?>					
-					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input type="submit" name="btn_catador" value="ACEITAR PEDIDO"><br><br>
+					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked>
+					<p style="text-align: center;"><input type="submit" name="btn_morador" value="ACEITAR PEDIDO"></p>
 					</form>
 					</div>										
 					<?PHP					
 					}					
 					?>					
 					<?php
+					echo "</div>";
+				echo "</div>";		
 					///faz a comfirmação do pedido, catadores e empressas
 				if (isset($_POST['id'])) {
 					try {						
@@ -83,7 +88,7 @@
 			    }
 				//////catadores/////////////////////////////////////////////////////////////////////////////////////
 				if ($_SESSION['usuario'] == 'catador') {
-					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta, a.idcatador!=null and a.idempresa!=null and a.idmorador FROM associacao a 
+					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta FROM associacao a 
 						join morador b on b.id=a.idmorador 
 						join dias c on c.id=a.iddias 
 						where idcatador is  null and idempresa is  null");					
@@ -94,7 +99,7 @@
 					}
 					foreach ($result as $row) {
 					?>
-					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px 8px green">
 					<form method="POST">
 					<?php	
 					echo "<strong>ID</strong>: ".$row['id']."<br>";
@@ -109,8 +114,8 @@
 					echo "<input style="."display:none"." type="."checkbox"." name="."id"." value=".$row['id']." checked>";
 					echo "<strong>LITROS</strong>: ".$row['litros']."<br>";
 					?>					
-					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input type="submit" name="btn_catador" value="ACEITAR PEDIDO"><br><br>
+					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked>
+					<p style="text-align: center;"><input type="submit" name="btn_morador" value="ACEITAR PEDIDO"></p>
 					</form>
 					</div>						
 					<?php					
@@ -136,7 +141,7 @@
 				//empressa/////////////////////////////////////////////////////////////////////////////////////////////////
 				if ($_SESSION['usuario'] == 'empresa') {	
 					//codigo responsavel por trazer todos os agendamentos dos moradores, e fazer as comparação de classificação				
-					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta, a.idcatador!=null and a.idempresa!=null and a.idmorador FROM associacao a 
+					$select=$conn->prepare("SELECT a.id, b.nome, b.cep, b.endereco, b.bairro, b.complemento, b.numero, b.amarelo, b.verde, b.vermelho, b.azul, b.marrom, b.laranja, b.preto, b.cinza, b.roxo, b.branco, b.litros,c.segunda,c.terca,c.quarta,c.quinta,c.sexta FROM associacao a 
 						join morador b on b.id=a.idmorador join dias c on c.id=a.iddias where idcatador is  null and idempresa is  null");
 
 					$select->execute();
@@ -146,7 +151,7 @@
 					}
 					foreach ($result as $row) {
 					?>
-					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px green">
+					<div class="rel" style="display: inline-block;border: 1px solid; margin: 5px 5px; box-shadow: 2px 2px 8px green">
 					<form method="POST">
 					<?php	
 					echo "<strong>ID</strong>: ".$row['id']."<br>";
@@ -161,8 +166,8 @@
 					echo "<input style="."display:none"." type="."checkbox"." name="."id"." value=".$row['id']." checked>";
 					echo "<strong>LITROS</strong>: ".$row['litros']."<br>";
 					?>					
-					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked><br>
-					<input type="submit" name="btn_empresa" value="ACEITAR PEDIDO"><br><br>
+					<input style="display:none" type="checkbox" name="btn_usuario" value="Aceitar Coleta" checked>
+					<p style="text-align: center;"><input type="submit" name="btn_morador" value="ACEITAR PEDIDO"></p>
 					</form>
 					</div>						
 					<?php				

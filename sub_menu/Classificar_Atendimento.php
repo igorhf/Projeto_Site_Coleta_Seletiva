@@ -1,5 +1,7 @@
 <?php
 /////////////////moradores
+				echo "<div style="."display:". "block".">";	
+					echo "<div>";
 				if ($_SESSION['usuario']=="morador") {
 					$select=$conn->prepare("SELECT  a.id,c.nome,c.cnpj,c.telefone,c.email,a.cortida2,a.comentario2 from associacao a 
 						join morador b on b.id=a.idmorador 
@@ -36,17 +38,18 @@
 						<label><strong>COMENTARIO: </strong></label><br>
 						<textarea rows="5" cols="35" name="comentario"></textarea>
 						<br>
-						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked><br>
-						<input type="submit" name="btm_Classificar_Atendimento_morador" value="SALVA">	
+						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked>
+						<p style="text-align: center;"><input type="submit" name="btm_Classificar_Atendimento_morador" value="SALVA"></p>
 						</form>	
 						</div>							
 						<?php
 					}
-					echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+					echo "</div>";
+					echo "<div>";
 					////////////////////////divisao/////////////////////////
 						$select=$conn->prepare("SELECT  a.id,c.nome,c.cpf,c.telefone,c.email,a.cortida2,a.comentario2 from associacao a 
 						join morador b on b.id=a.idmorador 
-						join catadores c on c.id=a.idcatador 
+						join catador c on c.id=a.idcatador 
 						where a.coleta is not null and a.cortida2 is null and a.comentario2 is null and a.idmorador=:id");
 					
 					$select->bindParam(':id', $_SESSION['id']);
@@ -79,18 +82,20 @@
 						<label><strong>COMENTARIO: </strong></label><br>
 						<textarea rows="5" cols="35" name="comentario"></textarea>
 						<br>
-						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked><br>
-						<input type="submit" name="btm_Classificar_Atendimento_morador" value="SALVA">	
+						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked>
+						<p style="text-align: center;"><input type="submit" name="btm_Classificar_Atendimento_morador" value="SALVA"></p>	
 						</form>	
 						</div>						
 						<?php
 					}
 				}
+				echo "</div>";
+			echo "</div>";
 				////////////Classificar Atendimento//////catadores/////////////////
 				if ($_SESSION['usuario']=="catador") {
 					$select=$conn->prepare("SELECT  a.id,b.nome,b.cpf,a.cortida1,a.comentario1 from associacao a 
 						join morador b on b.id=a.idmorador 
-						join catadores c on c.id=a.idcatador 
+						join catador c on c.id=a.idcatador 
 						where a.coleta is not null and a.cortida1 is null and a.comentario1 is null and a.idcatador=:id");
 					
 					$select->bindParam(':id', $_SESSION['id']);
@@ -121,8 +126,8 @@
 						<label><strong>COMENTARIO: </strong></label><br>
 						<textarea rows="5" cols="35" name="comentario"></textarea>
 						<br>
-						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked><br>
-						<input type="submit" name="btm_Classificar_Atendimento_catador" value="SALVA">	
+						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked>
+						<p style="text-align: center;"><input type="submit" name="btm_Classificar_Atendimento_catador" value="SALVA"></p>
 						</form>	
 						</div>						
 						<?php
@@ -163,8 +168,8 @@
 						<label><strong>COMENTARIO: </strong></label><br>
 						<textarea rows="5" cols="35" name="comentario"></textarea>
 						<br>
-						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked><br>
-						<input type="submit" name="btm_Classificar_Atendimento_empressa" value="SALVA">	
+						<input style="display:none" type="checkbox" name="btn_usuario" value="Classificar Atendimento" checked>
+						<p style="text-align: center;"><input type="submit" name="btm_Classificar_Atendimento_empresa" value="SALVA"></p>	
 						</form>	
 						</div>						
 						<?php
@@ -205,7 +210,7 @@
 						<?php
 					}						
 				}
-				if (isset($_POST['btm_Classificar_Atendimento_empressa'])) {
+				if (isset($_POST['btm_Classificar_Atendimento_empresa'])) {
 					try {
 						$update=$conn->prepare("UPDATE associacao SET cortida1=:cortida1,comentario1=:comentario1 where id=:id");
 						$update->bindParam(':cortida1',$_POST['like']);

@@ -18,7 +18,7 @@ require_once("conecxao_bd/configuracao_sql.php");
 			$sql1->execute();
 			$result1=$sql1->fetch(PDO::FETCH_ASSOC);
             //print_r($result1);
-            $sql2 = $conn->prepare("SELECT * FROM catadores where cpf=:login and senha=:senha");
+            $sql2 = $conn->prepare("SELECT * FROM catador where cpf=:login and senha=:senha");
 			$sql2->bindParam(":login",$login);
 			$sql2->bindParam(":senha",$senha);
 			$sql2->execute();
@@ -44,7 +44,7 @@ require_once("conecxao_bd/configuracao_sql.php");
 				$_SESSION['usuario'] = 'morador';							
 			}
 			elseif ($result2 != 0) {
-				$sql = $conn->prepare("SELECT * FROM catadores where cpf=:login and senha=:senha");
+				$sql = $conn->prepare("SELECT * FROM catador where cpf=:login and senha=:senha");
 				$sql->bindParam(":login",$login);
 			    $sql->bindParam(":senha",$senha);
 				$sql->execute();
