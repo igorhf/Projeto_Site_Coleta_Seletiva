@@ -184,7 +184,7 @@
 						} finally{
 							?>
 							<script type="text/javascript">
-								alert("pedido aceito com sucesso");
+								//alert("pedido aceito com sucesso");
 							</script>
 							<?php
 						}						
