@@ -1,12 +1,12 @@
-informações do banco 
+informaï¿½ï¿½es do banco 
 MySQL 5.7.17 x86
 
 copie e colar
-1º passo-----------------------------------
+1ï¿½ passo-----------------------------------
 
 create database coletas;
 
-2º passo-----------------------------------
+2ï¿½ passo-----------------------------------
 
 create table associacao(
 id int primary key auto_increment,
@@ -27,7 +27,7 @@ coteta varchar(10),
 data date
 );
 
-3º passo-----------------------------------
+3ï¿½ passo-----------------------------------
 
 create table empresa(
 id int primary key auto_increment,
@@ -49,7 +49,7 @@ branco varchar(15),
 litros int
 );
 
-4º passo-----------------------------------
+4ï¿½ passo-----------------------------------
 
 create table catador(
 id int primary key auto_increment,
@@ -72,7 +72,7 @@ branco varchar(15),
 litros int
 );
 
-5º passo-----------------------------------
+5ï¿½ passo-----------------------------------
 
 create table morador(
 id int primary key auto_increment,
@@ -100,4 +100,14 @@ cinza varchar(15),
 roxo varchar(15),
 branco varchar(15),
 litros int
+);
+
+create table dias(
+id int primary key auto_increment,
+id_usuario int,
+segunda varchar(10),
+terca varchar(10),
+quarta varchar(10),
+quinta varchar(10),
+sexta varchar(10)
 );

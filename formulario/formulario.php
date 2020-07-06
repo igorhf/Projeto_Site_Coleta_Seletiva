@@ -1,35 +1,69 @@
 <!--tabela opções de cadastros-->
-<script>
-	
-</script>
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-	<li class="nav-item">
-		<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Morador</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" id="profile-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="profile" aria-selected="false">Catador Autonomo</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contato" role="tab" aria-controls="contact" aria-selected="false">cooperativas ou órgãos públicos</a>
-	</li>
-</ul>
-<div class="tab-content" id="myTabContent"><br><br>
-	<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-		<?php
-		$tipo = 1;
-		include("formulario/formulario_cadastro.php");
-		?>
+<?php
+$tipo = isset($_GET['tipo']) ? $_GET['tipo'] : 1;
+if ($tipo == 1) {
+	$btn1 = "btn-success";
+	$btn2 = "btn-primary";
+	$btn3 = "btn-primary";
+} elseif ($tipo == 2) {
+	$btn1 = "btn-primary";
+	$btn2 = "btn-success";
+	$btn3 = "btn-primary";
+} elseif ($tipo == 3) {
+	$btn1 = "btn-primary";
+	$btn2 = "btn-primary";
+	$btn3 = "btn-success";
+} else {
+	$btn1 = "btn-primary";
+	$btn2 = "btn-primary";
+	$btn3 = "btn-primary";
+}
+?>
+<div class="row justify-content-center">
+	<div style="margin-right: 2px;" class="">
+		<form action="index.php" method="GET">			
+			<button type="submit" name="" class="btn btn-dark">Tela de Login</button>
+		</form>
+	</div><br>
+	<div style="margin-right: 2px;" class="">
+		<form action="index.php?cadastro_usuario=true&tipo=1" method="GET">
+			<input type="hidden" name="tipo" value="1">
+			<input type="hidden" name="cadastro_usuario" value="true">
+			<button type="submit" name="" class="btn <?= $btn1 ?>">Morador</button>
+		</form>
 	</div>
-	<div class="tab-pane fade" id="perfil" role="tabpanel" aria-labelledby="profile-tab">
-		<?php
-		$tipo = 2;
-		include("formulario/formulario_cadastro.php");
-		?>
+	<div style="margin-right: 2px;" class="">
+		<form action="index.php?cadastro_usuario=true&tipo=2" method="GET">
+			<input type="hidden" name="tipo" value="2">
+			<input type="hidden" name="cadastro_usuario" value="true">
+			<button type="submit" name="" class="btn <?= $btn2 ?>">Catador Autonomo</button>
+		</form>
 	</div>
-	<div class="tab-pane fade" id="contato" role="tabpanel" aria-labelledby="contact-tab">
-		<?php
-		$tipo = 3;
-		include("formulario/formulario_cadastro.php");
-		?>
+	<div class="">
+		<form action="index.php?cadastro_usuario=true&tipo=3" method="GET">
+			<input type="hidden" name="tipo" value="3">
+			<input type="hidden" name="cadastro_usuario" value="true">
+			<button type="submit" name="" class="btn <?= $btn3 ?>">cooperativas ou órgãos públicos</button>
+		</form>
 	</div>
+</div><br>
+
+<?php
+
+switch ($tipo) {
+	case 1:
+		include("formulario/formulario_cadastro.php");
+		break;
+	case 2:
+		include("formulario/formulario_cadastro.php");
+		break;
+	case 3:
+		include("formulario/formulario_cadastro.php");
+		break;
+
+	default:
+		# code...
+		break;
+}
+?>
 </div>

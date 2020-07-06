@@ -11,9 +11,9 @@
                 <input type="password" name="senha" class="form-control" placeholder="" required>
             </div>
         </div>
-        <button type="submit" name="btn_entrar" class="btn btn-primary col-md-12">Entrar</button><br>
-        <small id="" class="form-text text-muted"><a style="text-decoration: none;" href="index.php?cadastro_usuario=true" target="_blank">Cadastre-se</a></small>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        <button type="submit" name="btn_entrar" class="btn btn-primary col-md-12">Entrar</button><br><br>
+        <small id="" class="form-text text-muted"><a style="text-decoration: none;" href="index.php?cadastro_usuario=true&tipo=1" target="">Cadastre-se</a></small>
+        <button style="display: none;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             cadastre-se
         </button>
     </form>
