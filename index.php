@@ -9,39 +9,35 @@ if (!isset($_SESSION['logado'])) {
 	} else {
 		include("inc/login.php");
 		include("inc/modal.php");
-	}	
+	}
 } else {
 	include("inc/informacao_login.php");
-?>
-
-	<div class="div_2">
-	<?php
 }
-$opc = isset($_POST['btn_usuario']) ? $_POST['btn_usuario'] : "";
+$opc = isset($_GET['btn_usuario']) ? $_GET['btn_usuario'] : "";
 switch ($opc) {
 		//essa opção e validar a moradores, onde eles podera marcar o dia da coleta. informando a catador e empresa e o lixo esta cheio 
-	case 'Marcar dia da Coleta':
+	case 'marcar_dia_da_coleta':
 		require("sub_menu/Marcar_dia_da_Coleta.php");
 		break;
 
 		//aceita coletas, onde os moradores,catadores e empresas podera aceita o pedido de ambos.
 		//catadores e empresas. finalizara o pedido de coleta
-	case 'Aceitar Coleta':
+	case 'aceitar_coleta':
 		require("sub_menu/Aceitar_Coleta.php");
 		break;
 
 		//Classificar Atendimento, quando catador ou empresa, finalizar a coleta o morador, catador e empresa ambos poderam da uma classificação do atendimento e deixa comentario.	
-	case 'Classificar Atendimento':
+	case 'classificar_atendimento':
 		require("sub_menu/Classificar_Atendimento.php");
 		break;
 
 		//moradores,catadores e empresas, ambos iram ver os historicos das coletas	
-	case 'Historicos das Coletas':
+	case 'historicos_das_coletas':
 		require("sub_menu/Historicos_das_Coletas.php");
 		break;
 
 		//essa opção os catadores e empresas, podera finalizar as coletas
-	case 'Finalizar Coleta':
+	case 'finalizar_coleta':
 		require("sub_menu/Finalizar_Coleta.php");
 		break;
 
@@ -49,10 +45,4 @@ switch ($opc) {
 		# code...
 		break;
 }
-	?>
-
-	</div>
-	</div>
-	<?php
-	include("front/footer.php");
-	?>
+include("front/footer.php");

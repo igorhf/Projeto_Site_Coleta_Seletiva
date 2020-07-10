@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/logo.css">
     <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" href="assets/css/main.css">
 
     <!-- jquery validation -->
     <script src="assets/jquery-validation-1.19.2/jquery.validate.min.js"></script>
